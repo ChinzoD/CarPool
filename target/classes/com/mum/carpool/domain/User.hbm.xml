@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 31, 2016 12:45:48 PM by Hibernate Tools 5.1.0.Beta1 -->
+<hibernate-mapping>
+    <class name="com.mum.carpool.domain.User" table="user" catalog="carpoolingdb" optimistic-lock="version">
+        <id name="userid" type="java.lang.Integer">
+            <column name="userid" />
+            <generator class="identity" />
+        </id>
+        <property name="username" type="string">
+            <column name="username" length="50" not-null="true" />
+        </property>
+        <property name="enabled" type="java.lang.Byte">
+            <column name="enabled" />
+        </property>
+        <property name="fullname" type="string">
+            <column name="fullname" length="100" />
+        </property>
+        <property name="gender" type="java.lang.Integer">
+            <column name="gender" />
+        </property>
+        <property name="state" type="string">
+            <column name="state" length="50" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" length="50" />
+        </property>
+        <property name="street" type="string">
+            <column name="street" length="50" />
+        </property>
+        <property name="zipcode" type="java.lang.Integer">
+            <column name="zipcode" />
+        </property>
+        <property name="birthyear" type="java.lang.Integer">
+            <column name="birthyear" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="500" />
+        </property>
+        <property name="datecreated" type="timestamp">
+            <column name="datecreated" length="19" />
+        </property>
+        <property name="dateupdated" type="timestamp">
+            <column name="dateupdated" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

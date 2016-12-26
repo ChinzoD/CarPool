@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 31, 2016 12:45:48 PM by Hibernate Tools 5.1.0.Beta1 -->
+<hibernate-mapping>
+    <class name="com.mum.carpool.domain.UserRoles" table="user_roles" catalog="carpoolingdb" optimistic-lock="version">
+        <id name="userRoleId" type="java.lang.Integer">
+            <column name="user_role_id" />
+            <generator class="identity" />
+        </id>
+        <property name="username" type="string">
+            <column name="username" length="50" not-null="true" unique="true" />
+        </property>
+        <property name="role" type="string">
+            <column name="role" length="50" not-null="true" unique="true" />
+        </property>
+    </class>
+</hibernate-mapping>

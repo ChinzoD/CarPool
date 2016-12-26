@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 23, 2016 3:44:29 PM by Hibernate Tools 5.1.0.Beta1 -->
+<hibernate-mapping>
+    <class name="com.mum.carpool.domain_test.Likes" table="likes" catalog="carpoolingdb" optimistic-lock="version">
+        <id name="likeid" type="java.lang.Integer">
+            <column name="likeid" />
+            <generator class="identity" />
+        </id>
+        <property name="userid" type="int">
+            <column name="userid" not-null="true" />
+        </property>
+        <property name="postid" type="int">
+            <column name="postid" not-null="true" />
+        </property>
+        <property name="datecreated" type="timestamp">
+            <column name="datecreated" length="19" not-null="true" />
+        </property>
+        <property name="dateupdated" type="timestamp">
+            <column name="dateupdated" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

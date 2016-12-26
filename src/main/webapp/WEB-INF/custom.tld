@@ -1,0 +1,30 @@
+<taglib>
+  <tlib-version>1.0</tlib-version>
+  <jsp-version>2.0</jsp-version>
+  <short-name>My Custom Tag</short-name>
+  <tag>
+    <name>cMessage</name>
+    <tag-class>com.mum.carpool.custom.MyTag</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+		<name>success</name>
+		<required>true</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>error</name>
+		<required>true</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>	
+	<attribute>
+		<name>state</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>	
+	<attribute>
+		<name>display</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>				
+  </tag>
+</taglib>

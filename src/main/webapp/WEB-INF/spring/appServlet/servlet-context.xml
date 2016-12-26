@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+	    http://www.springframework.org/schema/mvc 
+	    http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+
+	<beans:bean id="tilesViewResolver"
+        class="org.springframework.web.servlet.view.tiles2.TilesViewResolver">
+    </beans:bean>
+    <beans:bean id="tilesConfigurer"
+        class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+        <beans:property name="definitions">
+            <beans:list>
+		       <beans:value>/WEB-INF/tiles/tiles-def.xml</beans:value>
+		    </beans:list>
+        </beans:property>
+    </beans:bean>
+    
+    <!-- <beans:bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<beans:property name="url" value="jdbc:mysql://localhost/carpoolingdb"/>
+		<beans:property name="username" value="carpool"/>
+		<beans:property name="password" value="c4rp001"/>
+		<pbeansroperty name="automaticTestTable" value="C3P0_TEST_TABLE"></property>
+	</beans:bean> -->
+	<beans:bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+    <beans:property name="driverClass" value="com.mysql.jdbc.Driver"></beans:property>
+    <beans:property name="jdbcUrl" value="jdbc:mysql://localhost/carpoolingdb?characterEncoding=UTF-8"/>
+    <beans:property name="user" value="carpool"/>
+    <beans:property name="password" value="c4rp001"/>
+    <beans:property name="initialPoolSize" value="5"></beans:property>
+    <beans:property name="minPoolSize" value="5"></beans:property>
+    <beans:property name="maxPoolSize" value="15"/>
+    <beans:property name="maxStatements" value="50"></beans:property>
+    <beans:property name="automaticTestTable" value="C3P0_TEST_TABLE"></beans:property>
+    <beans:property name="idleConnectionTestPeriod" value="21600"></beans:property> 
+	</beans:bean>
+	
+	<beans:bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<beans:property name="dataSource" ref="dataSource" />
+		<beans:property name="mappingResources">
+            <beans:list>
+                <beans:value>com/mum/carpool/domain/User.hbm.xml</beans:value> 
+                <beans:value>com/mum/carpool/domain/Posts.hbm.xml</beans:value>
+                <beans:value>com/mum/carpool/domain/Likes.hbm.xml</beans:value>
+                <beans:value>com/mum/carpool/domain/Comments.hbm.xml</beans:value>
+			</beans:list>
+        </beans:property>
+		<beans:property name="hibernateProperties">
+            <beans:props>
+                <beans:prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</beans:prop>
+                <beans:prop key="hibernate.show_sql">false</beans:prop>
+                <beans:prop key="hibernate.connection.release_mode">after_transaction</beans:prop> 
+            </beans:props>
+        </beans:property>
+    </beans:bean>
+	
+	<beans:bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<beans:property name="sessionFactory" ref="sessionFactory"/>
+	</beans:bean>
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<!-- <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean> -->
+	
+	
+	<context:component-scan base-package="com.mum.carpool" />
+	
+	
+	
+</beans:beans>
