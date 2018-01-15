@@ -1,2 +1,2 @@
 # CarPool
-Car pooling system
+Carpooling system
